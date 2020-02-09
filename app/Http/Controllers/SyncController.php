@@ -8,16 +8,17 @@ class SyncController extends Controller
 {
     function validation($request) {
         return $this->validate($request, [
-            'title' => 'required',
-            'city' => 'required',
-            'email' => 'required|email'
+            'title' => 'required|string',
+            'city' => 'required|string',
+            'email' => 'required|string|email',
+            'pass' => 'required|string|min:5'
         ]);
     }
 
     public function test(Request $request) {
 
         $data = $this->validation($request);
-        return response($data)->header('Access-Control-Allow-Origin', '*');
+        return response($data);
     }
 
 
